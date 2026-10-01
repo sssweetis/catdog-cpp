@@ -1,0 +1,12 @@
+# 编译产物和运行时库
+*.exe
+*.dll
+*.onnx
+
+# ONNX Runtime 完整目录，体积大且可从官网下载
+onnxruntime-win-x64-1.20.1/
+
+# 测试图片（避免误传）
+*.jpg
+*.jpeg
+*.png
