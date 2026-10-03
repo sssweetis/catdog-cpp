@@ -270,7 +270,20 @@ void print_prediction(const std::vector<float>& probabilities) {
         }
     }
 
-    std::cout << "类别: " << label << ", 概率: "
+    // 打印Top-3（不破坏原概率数据）
+float temp_output[1000];
+std::copy(probabilities.begin(), probabilities.end(), temp_output);for (int k = 0; k < 3; ++k) {
+    int best = 0;
+    for (int i = 1; i < 1000; ++i) {
+        if (temp_output[i] > temp_output[best]) best = i;
+    }
+    std::cout << "Top" << k + 1 << ": 索引=" << best
+              << ", 概率=" << std::fixed << std::setprecision(4)
+              << temp_output[best] << std::endl;
+    temp_output[best] = 0;
+}
+
+std::cout << "类别: " << label << ", 概率: "
               << std::fixed << std::setprecision(4) << probability << std::endl;
 }
 
